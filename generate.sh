@@ -53,7 +53,10 @@ do
 	archivefolder="$(echo $postdate | sed -e 's/\(..\)\.\(..\)\.\(..\)/20\3\/\2\/\1/')"
 	postcontent="$(sed -n '4,$p' $filename)"
 	postlink="$url/archiv/$archivefolder/$filename"
-	article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3>$postdate</h3> $postcontent"
+	if [ $flattr_id != "" ]; then
+		flattr="<a href=\"https://flattr.com/submit/auto?user_id=$flattr_id&url=$postlink&title=$postheadline&language=$flattr_lang&tags=$title&category=text\"><img src=\"http://api.flattr.com/button/flattr-badge-large.png\" /></a>"
+	fi
+	article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3>$postdate</h3> $postcontent $flattr"
 
 	# Generate the blog posts and the archive
 	if [ ! -d "../archiv/$archivefolder" ]; then
