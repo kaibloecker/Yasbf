@@ -53,7 +53,8 @@ do
 	archivefolder="$(echo $postdate | sed -e 's/\(..\)\.\(..\)\.\(..\)/20\3\/\2\/\1/')"
 	postcontent="$(sed -n '4,$p' $filename)"
 	postlink="$url/archiv/$archivefolder/$filename"
-	if [ $flattr_id != "" ]; then
+	if [ $flattr_id != "" ]
+	then
 		flattr="<br/><a href=\"https://flattr.com/submit/auto?user_id=$flattr_id&url=$postlink&title=$postheadline&language=$flattr_lang&category=$flattr_category\"><img src=\"http://api.flattr.com/button/flattr-badge-large.png\" class=\"flattrbutton\" /></a>"
 	fi
 	article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3>$postdate</h3> $postcontent $flattr"
