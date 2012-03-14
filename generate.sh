@@ -55,7 +55,9 @@ do
 	postlink="$url/archiv/$archivefolder/$filename"
 	if [ $flattr_id != "" ]
 	then
-		flattr="<br/><a href=\"https://flattr.com/submit/auto?user_id=$flattr_id&url=$postlink&title=$postheadline&language=$flattr_lang&category=$flattr_category\"><img src=\"http://api.flattr.com/button/flattr-badge-large.png\" class=\"flattrbutton\" /></a>"
+		flattr_postheadline="$(echo "$postheadline" | sed 's/ /%20/g')"
+		flattr_link="https://flattr.com/submit/auto?user_id=$flattr_id&url=$postlink&title=$flattr_postheadline&language=$flattr_lang&category=$flattr_category"
+		flattr="<br/><a href=\"$flattr_link\"><img src=\"http://api.flattr.com/button/flattr-badge-large.png\" class=\"flattrbutton\" /></a>"
 	fi
 	article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3>$postdate</h3> $postcontent $flattr"
 
