@@ -66,6 +66,8 @@ article a:hover {
 }
 
 article blockquote {
+	color: #808080;
+	font-style: italic;
 	border-left: 4px solid #eeeeee;
 	padding-left: 10px;
 }
