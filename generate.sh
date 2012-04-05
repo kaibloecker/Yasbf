@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Print welcome message
-echo "--"$(date +"%Y-%m-%d %T")"--"
-echo "Yasbf has been started."
+echo "--$(date +"%Y-%m-%d %T")--
+Yasbf has been started."
 
 # Read configuration from the config.cfg file
 echo "Reading configuration file..."
@@ -87,6 +87,6 @@ archive="$headertemplate <article><div id=\"archive\"><h1>Blog Archive</h1><ul>$
 echo $archive > archive/index.html
 
 # Goodbye message
-echo ""
-echo "100%[======================================]"
-echo "Blog generation was successful."
+echo "
+100%[======================================]
+Blog generation was successful."
