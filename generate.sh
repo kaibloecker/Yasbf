@@ -47,7 +47,7 @@ do
 	postcontent="$(sed -n '4,$p' $filename)"
 	postlink="$url/archive/$postdate/$filename"
 	article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3>$postdate</h3> $postcontent"
-	
+
 	# Generate the blog posts and the archive
 	if [ ! -d "../archive/$postdate" ]; then
 		mkdir "../archive/$postdate"
