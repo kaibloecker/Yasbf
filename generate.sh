@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+# Check if sed is installed
+if [ "$(command -v sed)" = "" ]; then
+	echo "Y U NO INSTALL SED?!"
+	exit
+fi
+
 # Print welcome message
 echo "--$(date +"%Y-%m-%d %T")--
 Yasbf has been started."
