@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Print welcome message
 echo "--$(date +"%Y-%m-%d %T")--
