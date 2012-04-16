@@ -89,7 +89,7 @@ echo $feed > feed.rss
 
 # Create archive.html
 echo "Creating archive..."
-archive="$headertemplate <article><div id=\"archive\"><h1>Blog Archive</h1><ul>$archive</ul></div></article> $footer"
+archive="$headertemplate <article><div id=\"archive\"><h1>Blog Archive</h1><ul>$archive</ul></div></article> $footertemplate"
 echo $archive > archive/index.html
 
 # Goodbye message
