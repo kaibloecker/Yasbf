@@ -10,4 +10,4 @@ You will find a short Documentation about Yasbf in the [Wiki](https://github.com
 
 --------
 
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=Poapfel&url=https://github.com/Poapfel/Yasbf&title=Yasbf&language=en_GB&tags=github&category=software)
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/thing/536465/Yasbf)
