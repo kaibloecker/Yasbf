@@ -4,3 +4,11 @@ body {
 	width: auto;
 	margin-top: 25px;
 }
+
+nav {
+	margin-top: 20px;
+}
+
+article a.flattrbutton {
+	background: url(../images/flattr.png) no-repeat 0 0;
+}
