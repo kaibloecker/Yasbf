@@ -50,15 +50,16 @@ do
 	filename="$(echo "$key" | sed 's/.*,//')"
 	postheadline="$(sed -n 1p $filename)"
 	postdate="$(sed -n '2s/ .*//p' $filename)"
+	archivefolder="$(echo $postdate | sed -e 's/\(..\)\.\(..\)\.\(..\)/20\3\/\2\/\1/')"
 	postcontent="$(sed -n '4,$p' $filename)"
-	postlink="$url/archive/$postdate/$filename"
+	postlink="$url/archive/$archivefolder/$filename"
 	article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3>$postdate</h3> $postcontent"
 
 	# Generate the blog posts and the archive
-	if [ ! -d "../archive/$postdate" ]; then
-		mkdir "../archive/$postdate"
+	if [ ! -d "../archive/$archivefolder" ]; then
+		mkdir -p "../archive/$archivefolder"
 	fi
-	echo "$headertemplate <article>$article</article> $footertemplate" > ../archive/$postdate/$filename
+	echo "$headertemplate <article>$article</article> $footertemplate" > ../archive/$archivefolder/$filename
 	archive="$archive <li><span>$postdate</span> » <a href=\"$postlink\">$postheadline</a></li>"
 
 	# Generate the index.html
