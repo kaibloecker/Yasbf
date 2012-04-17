@@ -20,8 +20,8 @@ if [ $(echo $url | sed "s/^.*\(.\)$/\1/") = "/" ]; then
 fi
 
 # Create archive folder (if it doesn't exist)
-if [ ! -d "archive" ]; then
-	mkdir archive
+if [ ! -d "archiv" ]; then
+	mkdir archiv
 fi
 
 # Fill feed template with custom content
@@ -52,14 +52,14 @@ do
 	postdate="$(sed -n '2s/ .*//p' $filename)"
 	archivefolder="$(echo $postdate | sed -e 's/\(..\)\.\(..\)\.\(..\)/20\3\/\2\/\1/')"
 	postcontent="$(sed -n '4,$p' $filename)"
-	postlink="$url/archive/$archivefolder/$filename"
+	postlink="$url/archiv/$archivefolder/$filename"
 	article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3>$postdate</h3> $postcontent"
 
 	# Generate the blog posts and the archive
-	if [ ! -d "../archive/$archivefolder" ]; then
-		mkdir -p "../archive/$archivefolder"
+	if [ ! -d "../archiv/$archivefolder" ]; then
+		mkdir -p "../archiv/$archivefolder"
 	fi
-	echo "$headertemplate <article>$article</article> $footertemplate" > ../archive/$archivefolder/$filename
+	echo "$headertemplate <article>$article</article> $footertemplate" > ../archiv/$archivefolder/$filename
 	archive="$archive <li><span>$postdate</span> » <a href=\"$postlink\">$postheadline</a></li>"
 
 	# Generate the index.html
@@ -91,7 +91,7 @@ echo $feed > feed.rss
 # Create archive.html
 echo "Creating archive..."
 archive="$headertemplate <div class=\"archive\"><h1>Blog Archive</h1><ul class=\"archive\">$archive</ul></div> $footertemplate"
-echo $archive > archive/index.html
+echo $archive > archiv/index.html
 
 # Goodbye message
 echo "
