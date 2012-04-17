@@ -36,7 +36,7 @@ cd posts
 for file in *.html
 do
 	customdate="$(sed -n 2p $file)"
-	customdate="20${customdate:6:2}${customdate:0:2}${customdate:3:2}.${customdate:9:2}${customdate:12:2}"
+	customdate="20${customdate:6:2}${customdate:3:2}${customdate:0:2}.${customdate:9:2}${customdate:12:2}"
 	if [ $(echo $customdate | sed 's/\.//') -le $(date +%Y%m%d%H%M) ]; then
 		index="${index}${customdate},${file}\n"
 	fi
@@ -71,7 +71,7 @@ do
 	let rsscount=rsscount+1
 	if [ $rsscount -le $amount_of_rss_items ]; then
 		rssdate="$(sed -n 2p $filename)"
-		rssdate="$(date -Rd "20${rssdate:6:2}-${rssdate:0:2}-${rssdate:3:2} ${rssdate:9:2}:${rssdate:12:2}")"
+		rssdate="$(date -Rd "20${rssdate:6:2}-${rssdate:3:2}-${rssdate:0:2} ${rssdate:9:2}:${rssdate:12:2}")"
 		feed="$feed <item><title>$postheadline</title><pubDate>$rssdate</pubDate><description><![CDATA[$postcontent]]></description><link>$postlink</link><guid>$postlink</guid></item>"
 	fi
 done
