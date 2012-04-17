@@ -58,23 +58,11 @@ do
 		flattr_link="https://flattr.com/submit/auto?user_id=$flattr_id&url=$postlink&title=$flattr_postheadline&language=$flattr_lang&category=$flattr_category"
 		flattr="<br/><a href=\"$flattr_link\"><img src=\"http://api.flattr.com/button/flattr-badge-large.png\" class=\"flattrbutton\" /></a>"
 	fi
-<<<<<<< HEAD
 	article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3>$postdate</h3> $postcontent $flattr"
 
 	# Generate the blog posts and the archive
 	if [ ! -d "../archiv/$archivefolder" ]; then
 		mkdir -p "../archiv/$archivefolder"
-=======
-	if [ "$(echo $(sed -n 3p $filename) | cut -c 1-4)" == "http" ]; then
-		article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3>$postdate</h3> $postcontent <audio controls=\"controls\"><source src="$enclosure_url" type="audio/mp3" /></audio> <br/> <a href=\"$enclosure_url\"><img src=\"$url/images/audio_mp3_button.png\"></a> $flattr"
-	else
-		article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3>$postdate</h3> $postcontent $flattr"
-	fi
-
-	#Generate the blog posts and the archive
-	if [ ! -d "../archives/$postdate" ]; then
-		mkdir "../archives/$postdate"
->>>>>>> e838f96... Flattr bugfix
 	fi
 	echo "$headertemplate <article>$article</article> $footertemplate" > ../archiv/$archivefolder/$filename
 	archive="$archive <li><span>$postdate</span> » <a href=\"$postlink\">$postheadline</a></li>"
