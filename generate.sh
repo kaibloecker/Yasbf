@@ -84,8 +84,10 @@ do
 
 	# Generate the index.html
 	let indexcount=indexcount+1
-	if [ $indexcount -le $posts_on_blog_index ]; then
+	if [ $indexcount -eq 1 ]; then
 		indexhtml="$indexhtml $article"
+	elif [ $indexcount -le $posts_on_blog_index ]; then
+		indexhtml="$indexhtml <hr /> $article"
 	fi
 
 	# Generate the rss feed
