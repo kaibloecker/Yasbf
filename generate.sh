@@ -6,6 +6,12 @@ if [ "$(command -v sed)" = "" ]; then
 	exit
 fi
 
+# Check if markdown is installed
+if [ "$(command -v markdown)" = "" ]; then
+	echo "Y U NO INSTALL MARKDOWN?!"
+	exit
+fi
+
 # Print welcome message
 echo "--$(date +"%Y-%m-%d %T")--
 Yasbf has been started."
@@ -13,6 +19,15 @@ Yasbf has been started."
 # Read configuration from the config.cfg file
 echo "Reading configuration file..."
 source config.cfg
+
+# Convert markdown files to html
+for MD_FILE in posts/*.md
+do
+	HTML_FILE=`echo $MD_FILE | sed -e 's/.*\///' -e 's/\.md$//'`.html
+	head -n 1 $MD_FILE | sed -e 's/^# //' > posts/$HTML_FILE
+	head -n 3 $MD_FILE | tail -n 2 >> posts/$HTML_FILE
+	sed -e '1,3d' $MD_FILE | markdown >> posts/$HTML_FILE
+done
 
 # Remove end slash from the url/link (if it has one)
 if [ $(echo $url | sed "s/^.*\(.\)$/\1/") = "/" ]; then
