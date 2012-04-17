@@ -78,7 +78,7 @@ do
 	if [ $rsscount -le $amount_of_rss_items ]; then
 		rssdate="$(sed -n 2p $filename)"
 		rssdate="$(date -Rd "20${rssdate:6:2}-${rssdate:3:2}-${rssdate:0:2} ${rssdate:9:2}:${rssdate:12:2}")"
-		feed="$feed <item><title>$postheadline</title><pubDate>$rssdate</pubDate><description><![CDATA[$postcontent]]></description><link>$postlink</link><guid>$postlink</guid></item>"
+		feed="$feed <item><title>$postheadline</title><pubDate>$rssdate</pubDate><description><![CDATA[$postcontent]]></description><link>$postlink</link><guid>$postlink</guid><atom:link rel=\"payment\" href=\"$flattr_link\" type=\"text/html\" /></item>"
 	fi
 done
 cd ..
