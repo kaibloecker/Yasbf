@@ -56,12 +56,14 @@ article h3 {
 	font-weight: normal;
 }
 
-article a {
+article a,
+div.archive a {
 	color: #000000;
 	text-decoration: underline;
 }
 
-article a:hover {
+article a:hover,
+div.archive a:hover {
 	color: #737373;
 }
 
@@ -110,17 +112,17 @@ footer a {
 	font-weight: bold;
 }
 
-article #archive h1 {
+div.archive h1 {
 	font-size: 15px;
 	margin-top: 50px;
 	margin-bottom: 1em;
 }
 
-article #archive ul {
+div.archive ul.archive {
 	list-style-type: none;
 }
 
-article #archive span {
+div.archive span {
 	font-size: small;
 	line-height: 25px;
 	color: #aaaaaa;
