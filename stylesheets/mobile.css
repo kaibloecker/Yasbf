@@ -9,6 +9,11 @@ nav {
 	margin-top: 20px;
 }
 
+article h1 a,
+div.archive h1 {
+	font-size: 18px;
+}
+
 article a.flattrbutton {
 	background: url(../images/flattr.png) no-repeat 0 0;
 }
