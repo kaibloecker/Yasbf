@@ -81,21 +81,21 @@ do
 		flattr_link="https://flattr.com/submit/auto?user_id=$flattr_id&amp;url=$flattr_postlink&amp;title=$flattr_postheadline&amp;language=$flattr_lang&amp;category=$flattr_category"
 		flattr="<a href=\"$flattr_link\" class=\"flattrbutton\"></a>"
 	fi
-	article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3 class=\"postdate\">$postdate</h3> $postcontent $flattr"
+	article="\n\n<h1><a href=\"$postlink\">$postheadline</a></h1>\n<h3 class=\"postdate\">$postdate</h3>\n$postcontent\n$flattr\n"
 
 	# Generate the blog posts and the archive
 	if [ ! -d "../archiv/$archivefolder" ]; then
 		mkdir -p "../archiv/$archivefolder"
 	fi
 	echo "$headertemplate <article>$article</article> $footertemplate" > ../archiv/$archivefolder/$filename
-	archive="$archive <li><span>$postdate</span> » <a href=\"$postlink\">$postheadline</a></li>"
+	archive="$archive\n\t<li>\n\t\t<span>$postdate</span> » <a href=\"$postlink\">$postheadline</a>\n\t</li>"
 
 	# Generate the index.html
 	let indexcount=indexcount+1
 	if [ $indexcount -eq 1 ]; then
 		indexhtml="$indexhtml $article"
 	elif [ $indexcount -le $posts_on_blog_index ]; then
-		indexhtml="$indexhtml <hr /> $article"
+		indexhtml="$indexhtml\n<hr />$article"
 	fi
 
 	# Generate the rss feed
@@ -110,8 +110,8 @@ cd ..
 
 # Create index.html
 echo "Creating blog index..."
-indexhtml="$headertemplate <article>$indexhtml</article> $footertemplate"
-echo $indexhtml > index.html
+indexhtml="$headertemplate\n\n<article>$indexhtml\n</article> $footertemplate"
+echo -e "$indexhtml" > index.html
 
 # Create feed.rss
 echo "Creating rss feed..."
@@ -120,8 +120,8 @@ echo -e "$feed" > feed.rss
 
 # Create archive.html
 echo "Creating archive..."
-archive="$headertemplate <div class=\"archive\"><h1>Blog Archive</h1><ul class=\"archive\">$archive</ul></div> $footertemplate"
-echo $archive > archiv/index.html
+archive="$headertemplate\n\n<div class=\"archive\">\n\n<h1>Blog Archive</h1>\n<ul class=\"archive\">$archive\n</ul>\n</div> $footertemplate"
+echo -e "$archive" > archiv/index.html
 
 # Goodbye message
 echo "
