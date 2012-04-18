@@ -78,7 +78,7 @@ do
 	if [ "$flattr_id" != "" ]; then
 		flattr_postheadline="$(echo "$postheadline" | sed 's/ /%20/g')"
 		flattr_postlink="$(echo "$postlink" | sed -e 's/:/%3A/g' -e 's/\//%2F/g')"
-		flattr_link="https://flattr.com/submit/auto?user_id=$flattr_id&title=$flattr_postheadline&language=$flattr_lang&category=$flattr_category&url=$flattr_postlink"
+		flattr_link="https://flattr.com/submit/auto?user_id=$flattr_id&amp;url=$flattr_postlink&amp;title=$flattr_postheadline&amp;language=$flattr_lang&amp;category=$flattr_category"
 		flattr="<a href=\"$flattr_link\" class=\"flattrbutton\"></a>"
 	fi
 	article="<h1><a href=\"$postlink\">$postheadline</a></h1> <h3 class=\"postdate\">$postdate</h3> $postcontent $flattr"
@@ -103,7 +103,7 @@ do
 	if [ $rsscount -le $amount_of_rss_items ]; then
 		rssdate="$(sed -n 2p $filename)"
 		rssdate="$(date -Rd "20${rssdate:6:2}-${rssdate:3:2}-${rssdate:0:2} ${rssdate:9:2}:${rssdate:12:2}")"
-		feed="$feed <item><title>$postheadline</title><pubDate>$rssdate</pubDate><description><![CDATA[$postcontent]]></description><link>$postlink</link><guid>$postlink</guid><atom:link rel=\"payment\" href=\"$flattr_link\" type=\"text/html\" /></item>"
+		feed="$feed \n\t<item>\n\t\t<title>$postheadline</title>\n\t\t<pubDate>$rssdate</pubDate>\n\t\t<description><![CDATA[$postcontent]]></description>\n\t\t<link>$postlink</link>\n\t\t<guid>$postlink</guid>\n\t\t<atom:link rel=\"payment\" href=\"$flattr_link\" type=\"text/html\" />\n\t</item>"
 	fi
 done
 cd ..
@@ -115,8 +115,8 @@ echo $indexhtml > index.html
 
 # Create feed.rss
 echo "Creating rss feed..."
-feed="$feedtemplate $feed </channel></rss>"
-echo $feed > feed.rss
+feed="$feedtemplate $feed \n</channel>\n</rss>"
+echo -e "$feed" > feed.rss
 
 # Create archive.html
 echo "Creating archive..."
