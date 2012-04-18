@@ -65,7 +65,7 @@ do
 	filename="$(echo "$key" | sed 's/.*,//')"
 	postheadline="$(sed -n 1p $filename)"
 	postdate="$(sed -n '2s/ .*//p' $filename)"
-	archivefolder="$(echo $postdate | sed -e 's/\(..\)\.\(..\)\.\(..\)/20\3\/\2\/\1/')"
+	archivefolder="$(echo "$postdate" | sed -e 's/\(..\)\.\(..\)\.\(..\)/20\3\/\2\/\1/')"
 	postcontent="$(sed -n '4,$p' $filename)"
 	postlink="$url/archiv/$archivefolder/$filename"
 	if [ "$flattr_id" != "" ]; then
