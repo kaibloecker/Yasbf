@@ -88,7 +88,7 @@ do
 	if [ ! -d "../archiv/$archivefolder" ]; then
 		mkdir -p "../archiv/$archivefolder"
 	fi
-	echo "$headertemplate <article>$article</article> $footertemplate" > ../archiv/$archivefolder/$filename
+	echo -e "$headertemplate <article>$article</article> $footertemplate" > ../archiv/$archivefolder/$filename
 	archive="$archive\n\t<li>\n\t\t<span>$postdate</span> » <a href=\"$postlink\">$postheadline</a>\n\t</li>"
 
 	# Generate the index.html
