@@ -1,5 +1,5 @@
 /* This is the css of the default Yasbf theme and it is heavily inspired by tom.preston-werner.com */
-@import url("http://fonts.googleapis.com/css?family=Vollkorn");
+@import url(http://fonts.googleapis.com/css?family=Vollkorn:400italic,400,700);
 
 body {
 	background-color: #ffffff;
