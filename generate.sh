@@ -71,12 +71,13 @@ do
 	# Some variables
 	filename="$(echo "$key" | sed 's/.*,//')"
 	postheadline="$(sed -n 1p $filename)"
+	rss_postheadline="$(echo "$postheadline" | sed -e 's/&/&amp;/g')"
 	postdate="$(sed -n '2s/ .*//p' $filename)"
 	archivefolder="$(echo "$postdate" | sed -e 's/\(..\)\.\(..\)\.\(..\)/20\3\/\2\/\1/')"
 	postcontent="$(sed -n '4,$p' $filename)"
 	postlink="$url/archiv/$archivefolder/$filename"
 	if [ "$flattr_id" != "" ]; then
-		flattr_postheadline="$(echo "$postheadline" | sed 's/ /%20/g')"
+		flattr_postheadline="$(echo "$postheadline" | sed -e 's/ /%20/g' -e 's/&/%26/g' -e 's/ä/%C3%A4/g' -e 's/ö/%C3%B6/g' -e 's/ü/%C3%BC/g' -e 's/ß/%C3%9F/g')"
 		flattr_postlink="$(echo "$postlink" | sed -e 's/:/%3A/g' -e 's/\//%2F/g')"
 		flattr_link="https://flattr.com/submit/auto?user_id=$flattr_id&amp;url=$flattr_postlink&amp;title=$flattr_postheadline&amp;language=$flattr_lang&amp;category=$flattr_category"
 		flattr="<a href=\"$flattr_link\" class=\"flattrbutton\"></a>"
@@ -104,7 +105,7 @@ do
 	if [ $rsscount -le $amount_of_rss_items ]; then
 		rssdate="$(sed -n 2p $filename)"
 		rssdate="$(date -Rd "20${rssdate:6:2}-${rssdate:3:2}-${rssdate:0:2} ${rssdate:9:2}:${rssdate:12:2}")"
-		feed="$feed \n\t<item>\n\t\t<title>$postheadline</title>\n\t\t<pubDate>$rssdate</pubDate>\n\t\t<description><![CDATA[$postcontent]]></description>\n\t\t<link>$postlink</link>\n\t\t<guid>$postlink</guid>$flattr_atomlink\n\t</item>"
+		feed="$feed \n\t<item>\n\t\t<title>$rss_postheadline</title>\n\t\t<pubDate>$rssdate</pubDate>\n\t\t<description><![CDATA[$postcontent]]></description>\n\t\t<link>$postlink</link>\n\t\t<guid>$postlink</guid>$flattr_atomlink\n\t</item>"
 	fi
 done
 cd ..
