@@ -22,8 +22,8 @@ if [ "$(command -v markdown)" = "" ]; then
 else
 	# Convert markdown files to html
 	echo "Converting markdown files to html..."
-	MD_FILES=posts/*.md
-	if [ ! $MD_FILES = 'posts/*.md' ]; then
+	MD_FILES=`ls posts/*.md 2> /dev/null`
+	if [ $? ]; then
 		for MD_FILE in $MD_FILES
 		do
 			HTML_FILE=`echo $MD_FILE | sed -e 's/^.*\///' -e 's/\.md$//'`.html
