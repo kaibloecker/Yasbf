@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # Check if sed is installed
 if [ "$(command -v sed)" = "" ]; then
