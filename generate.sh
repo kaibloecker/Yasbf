@@ -49,9 +49,14 @@ fi
 # Fill feed template with custom content
 feedtemplate=$(sed -e "s/{title}/$title/g" -e "s/{todayrss}/$(date -R)/g" -e "s/{description}/$description/g" -e "s^{url}^$url^g" templates/feed.rss)
 # Fill header template with custom content
-headertemplate=$(sed -e "s/{title}/$title/g" -e "s/{author}/$author/g" -e "s/{description}/$description/g" -e "s^{url}^$url^g" templates/header.html)
+headertemplate=$(sed -e "s/{title}/$title/g" -e "s/{author}/$author/g" -e "s/{description}/$description/g" -e "s^{url}^$url^g" -e "s/{flattr_id}/$flattr_id/g" -e "s/{flattr_lang}/$flattr_lang/g" -e "s/{flattr_category}/$flattr_category/g" templates/header.html)
 # Fill footer template with custom content
 footertemplate=$(sed -e "s/{year}/$(date +%Y)/g" -e "s/{author}/$author/g" templates/footer.html)
+
+# Remove global flattrbutton from headtemplate, if flattr is not configured
+if [ "$flattr_id" = "" ]; then
+	headertemplate=$(echo "$headertemplate" | sed -e "/<\!-- blogflattr -->/d");
+fi
 
 # Sort the files in the folder 'posts' by a custom date
 cd posts
