@@ -94,7 +94,7 @@ do
 	if [ ! -d "../archive/$archivefolder" ]; then
 		mkdir -p "../archive/$archivefolder"
 	fi
-	echo -e "$headertemplate <article>$article</article> $footertemplate" > ../archive/$archivefolder/$filename
+	echo -e "$headertemplate <article>$article<div id=\"socialshareprivacy\"></div></article> $footertemplate" > ../archive/$archivefolder/$filename
 	archive="$archive\n\t<li>\n\t\t<span>$postdate</span> » <a href=\"$postlink\">$postheadline</a>\n\t</li>"
 
 	# Generate the index.html
