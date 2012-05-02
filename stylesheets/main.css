@@ -152,6 +152,10 @@ article img {
 	height: auto;
 }
 
+article div#socialshareprivacy img {
+	margin: 0;
+}
+
 article code {
 	padding: 2px 2.5px 2px 2.5px;
 	background-color: #F3F3F3;
